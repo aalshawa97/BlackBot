@@ -59,9 +59,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     private EditText messageInputView;
     private ImageView botWritingView;
@@ -114,10 +115,10 @@ public class MainActivity extends AppCompatActivity {
         // saving the bot's core data in the cache
         if(dirMakingSuccessful && cacheDirectory.exists()){
             try{
-                for(String dir : assetManager.list("darkbot")){
+                for(String dir : Objects.requireNonNull(assetManager.list("darkbot"))){
                     File subDirectory = new File(cacheDirectory.getPath() + "/" + dir);
                     subDirectory.mkdirs();
-                    for(String file : assetManager.list("darkbot/" + dir)){
+                    for(String file : Objects.requireNonNull(assetManager.list("darkbot/" + dir))){
                         File f = new File(cacheDirectory.getPath() + "/" + dir + "/" + file);
                         if(!f.exists()){
                             InputStream in;
